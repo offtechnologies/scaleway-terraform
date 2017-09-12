@@ -1,0 +1,51 @@
+---
+- name: Update package cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+  tags:
+    - apt
+
+- name: Install aptitude
+  apt:
+    pkg: aptitude
+    state: installed
+  tags:
+    - apt
+
+- name: Upgrade APT to the latest packages
+  apt:
+    upgrade: safe
+  tags:
+    - apt
+
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - aptitude
+  - sudo
+  - fail2ban
+  - git-core
+  - mc
+  - ufw
+  - nano
+  - debconf-utils
+  - htop
+  - python-apt
+  - python3-apt
+  - sshguard
+  - unattended-upgrades
+  tags:
+    - apt
+
+- name: enable unattended-upgrades
+  copy:
+    src: ./templates/50unattended-upgrades.j2
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - apt

@@ -10,7 +10,7 @@ variable "my_architecture" {
 }
 
 variable "my_bootscript" {
-  default = "x86_64 mainline 4.12.11 rev1"
+  default = "x86_64 mainline 4.12.12 rev1"
 }
 
 variable "my_image" {

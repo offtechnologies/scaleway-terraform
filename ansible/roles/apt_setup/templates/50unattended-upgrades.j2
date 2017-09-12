@@ -1,0 +1,13 @@
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+Unattended-Upgrade::Mail "root";
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+Unattended-Upgrade::Automatic-Reboot "false";
+Unattended-Upgrade::Allowed-Origins {
+  "Ubuntu xenial-security";
+  "Ubuntu xenial-updates";
+};
+Unattended-Upgrade::Package-Blacklist {
+    "xnbd-client";
+    "nbd-client";
+};
