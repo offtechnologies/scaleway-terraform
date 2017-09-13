@@ -37,6 +37,7 @@
   - python3-apt
   - sshguard
   - unattended-upgrades
+  - apt-transport-https
   tags:
     - apt
 
