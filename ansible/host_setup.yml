@@ -3,10 +3,4 @@
   user: root
   roles:
    - apt_setup
-#   - ufw
-#   - ssh
-#   - { role: virtualbox, virtualbox_version: 5.1, virtualbox_user: offtech }
-#   - vagrant - this role works on Debian only!
-#   - test-kitchen
-#    - afpd
-#    - ansible-role-phpvirtualbox
+   - harden_system_setup

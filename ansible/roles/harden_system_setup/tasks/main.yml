@@ -1,0 +1,41 @@
+---
+
+- name: Harden sshd configuration
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "{{item}}"
+    line: "{{sshd_settings[item]}}"
+    state: "present"
+  notify: "restart sshd"
+  with_items:
+    - "{{sshd_settings | list}}"
+  tags:
+    - ssh
+
+- name: Sysctl settings
+  sysctl:
+    name: "{{item}}"
+    value: "{{sysctl_settings[item]}}"
+    sysctl_set: yes
+  with_items:
+    - "{{sysctl_settings | list}}"
+  tags:
+    - sysctl
+
+- name: "Setting up a firewall"
+  action: lineinfile dest=/etc/default/ufw regexp="^IPV6" line="IPV6=yes" state=present
+
+- ufw: rule=allow port={{ item }} proto=tcp
+  with_items:
+    - 2229
+    - 80
+    - 443
+    - 8080
+
+- ufw: rule=allow port={{ item }} proto=udp
+  with_items:
+    - 500
+    - 4500
+    - 4789
+
+- ufw: state=enabled policy=deny

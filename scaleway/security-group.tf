@@ -3,7 +3,7 @@ resource "scaleway_security_group" "my_group" {
   description = "Allow SSH traffic"
 }
 
-resource "scaleway_security_group_rule" "ssh_accept" {
+resource "scaleway_security_group_rule" "ssh_accept_1" {
   security_group = "${scaleway_security_group.my_group.id}"
 
   action    = "accept"
@@ -11,6 +11,16 @@ resource "scaleway_security_group_rule" "ssh_accept" {
   ip_range  = "0.0.0.0/0"
   protocol  = "TCP"
   port      = 22
+}
+
+resource "scaleway_security_group_rule" "ssh_accept_2" {
+  security_group = "${scaleway_security_group.my_group.id}"
+
+  action    = "accept"
+  direction = "inbound"
+  ip_range  = "0.0.0.0/0"
+  protocol  = "TCP"
+  port      = 2229
 }
 
 #resource "scaleway_security_group_rule" "http_accept" {
