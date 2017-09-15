@@ -5,3 +5,4 @@
    - apt_setup
    - harden_system_setup
    - docker_setup
+   - rancher_setup

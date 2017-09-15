@@ -38,6 +38,7 @@
   - sshguard
   - unattended-upgrades
   - apt-transport-https
+  - python-httplib2
   tags:
     - apt
 

@@ -1,0 +1,18 @@
+---
+# defaults file for rancher
+rancher_name: 'rancher_server'
+rancher_port: 8080
+rancher_version: 'stable'
+rancher_server: 127.0.0.1
+rancher_agent_name: "agent"
+
+admin_user: 'demo'
+admin_pass: 'demo'
+
+enable_local_auth_body:
+      accessMode: "restricted"
+      enabled: true
+      name: "{{ admin_user }}"
+      password: "{{ admin_pass }}"
+      username: "{{ admin_user }}"
+      _hack: null
